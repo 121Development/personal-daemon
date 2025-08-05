@@ -154,205 +154,89 @@ Personal mottos are:
         content: [
           {
             type: "text",
-            text: JSON.stringify({
-              "personalInfo": {
-                "name": "Erik",
-                "title": "Security & Technology Professional",
-                "location": "Sweden"
-              },
-              "summary": "Experienced professional with expertise in security, AI, technology, health, and management. Specialized in problem-solving and understanding the intersection of technology and people.",
-              "skills": {
-                "technical": ["Security", "AI/ML", "Technology Architecture", "Problem Solving"],
-                "soft": ["Leadership", "Strategic Thinking", "Big Picture Analysis", "Management"]
-              },
-              "experience": [
-                {
-                  "SRS Security": [
-                    {
-                      "title": "Head of Protective Services",
-                      "duration": "Jul 2023 – Present",
-                      "location": "Stockholm, Sweden",
-                      "responsibilities": [
-                        "Head of operations and SOC",
-                        "Risk management and key account ownership",
-                        "Sales and business development",
-                        "Team leadership (65+ staff)"
-                      ],
-                      "skills": [
-                        "Incident Management",
-                        "Key Performance Indicators",
-                        "Corporate Security",
-                        "Analytical Skills",
-                        "Crisis Management",
-                        "Technology Security"
-                      ]
-                    },
-                    {
-                      "title": "Head of SOC",
-                      "duration": "Nov 2020 – Jul 2023",
-                      "responsibilities": [
-                        "Led Security Operations Center",
-                        "Managed tech stack and incident response",
-                        "Focus on KPIs and corporate security"
-                      ],
-                      "skills": [
-                        "IT",
-                        "Incident Management",
-                        "Corporate Security",
-                        "Analytical Skills",
-                        "Crisis Management",
-                        "Rust",
-                        "Java",
-                        "TypeScript",
-                        "SQL",
-                        "JavaScript",
-                        "Technology Security"
-                      ]
-                    },
-                    {
-                      "title": "Security Coordinator & Close Protection Officer",
-                      "duration": "Sep 2018 – Nov 2020",
-                      "responsibilities": [
-                        "Site manager in Somalia",
-                        "Close protection",
-                        "Risk management"
-                      ],
-                      "skills": [
-                        "Incident Management",
-                        "Corporate Security",
-                        "Personnel Security",
-                        "Security Operations",
-                        "Security Consulting",
-                        "Security Management"
-                      ]
-                    },
-                    {
-                      "title": "Consultant",
-                      "duration": "Jan 2007 – Sep 2010",
-                      "responsibilities": [
-                        "Executive protection",
-                        "Counter surveillance",
-                        "Risk management"
-                      ]
-                    }
-                  ],
-                  "Swedish Armed Forces": [
-                    {
-                      "title": "Hvgrpch stf (Home Guard Staff)",
-                      "duration": "Nov 2017 – Sep 2020"
-                    },
-                    {
-                      "title": "Deputy Squad Leader, Int. Ranger Platoon",
-                      "duration": "Aug 2006 – Jan 2008",
-                      "unit": "AJB"
-                    },
-                    {
-                      "title": "Squad Leader, Para Rangers",
-                      "duration": "Aug 2005 – Jul 2006",
-                      "unit": "FJS/K3"
-                    }
-                  ],
-                  "Puori": [
-                    {
-                      "title": "Executive Distributor, Sweden, Finland & Norway",
-                      "duration": "Jan 2011 – Dec 2018",
-                      "responsibilities": [
-                        "Country Manager for Scandinavia",
-                        "Sales and KPI tracking"
-                      ],
-                      "skills": [
-                        "Key Performance Indicators",
-                        "Analytical Skills"
-                      ]
-                    }
-                  ],
-                  "Soya Group Support AB": [
-                    {
-                      "title": "Security Operator",
-                      "duration": "Oct 2010 – Aug 2017",
-                      "location": "Stockholm, Sweden",
-                      "responsibilities": [
-                        "Executive protection",
-                        "Counter surveillance",
-                        "Duty officer",
-                        "Risk management"
-                      ],
-                      "skills": [
-                        "Incident Management",
-                        "Corporate Security"
-                      ]
-                    }
-                  ],
-                  "CrossFit Nordic": [
-                    {
-                      "title": "Project Manager",
-                      "duration": "Jan 2009 – Dec 2013",
-                      "responsibilities": [
-                        "Organized Nordic Showdown (major CrossFit event)",
-                        "Managed annual CrossFit competitions"
-                      ],
-                      "skills": [
-                        "Key Performance Indicators"
-                      ]
-                    },
-                    {
-                      "title": "Founder and Co-Owner",
-                      "duration": "Jul 2008 – Dec 2013",
-                      "responsibilities": [
-                        "Founded CrossFit Nordic gym in Stockholm",
-                        "Co-led operations with Rickard Walén and Mads Jacobsen"
-                      ],
-                      "skills": [
-                        "Key Performance Indicators"
-                      ]
-                    }
-                  ]
-                }
-                
-              ],
-              "education": [
-                {
-                  "institution": "Luleå University of Technology",
-                  "degree": "Teknologie kandidatexamen (tekn.kand.)",
-                  "field": "Systemvetenskap och -teori",
-                  "year": 2022,
-                  "skills": [
-                    "Analytical Skills",
-                    "Technology Security"
-                  ]
-                },
-                {
-                  "institution": "Uppsala University",
-                  "field": "IT-säkerhet, GDPR, Programmering, IT",
-                  "year": 2020,
-                  "skills": [
-                    "Technology Security"
-                  ]
-                },
-                {
-                  "institution": "Karolinska Institutet",
-                  "field": "Physiology",
-                  "years": "2008 - 2009"
-                },
-                {
-                  "institution": "Försvarshögskolan - Swedish Defence University",
-                  "course": "Leadership",
-                  "year": 2008,
-                  "details": "Civil Military Leadership"
-                },
-                {
-                  "institution": "Scandinavian Risk Solutions",
-                  "course": "VU1",
-                  "year": 2009,
-                  "details": "Väktare nivå 1"
-                }
-              ],
-              "interests": ["Security", "AI", "Technology", "Health", "Management"],
-              "mottos": [
-                "Skate to where the puck is going",
-                "Who dares wins"
-              ]
-            }, null, 2),
+            text: JSON.stringify(`name: Erik\n
+              title: Security & Technology Professional\n
+              location: Sweden\n
+              \n
+              summary: Experienced professional with expertise in security, AI, technology, health, and management. Specialized in problem-solving and understanding the intersection of technology and people.\n
+              \n
+              technical skills: Security, AI/ML, Technology Architecture, Problem Solving\n
+              soft skills: Leadership, Strategic Thinking, Big Picture Analysis, Management\n
+              \n
+              experience:\n
+              SRS Security:\n
+              - Head of Protective Services (Jul 2023 – Present, Stockholm, Sweden)\n
+                • Head of operations and SOC\n
+                • Risk management and key account ownership\n
+                • Sales and business development\n
+                • Team leadership (65+ staff)\n
+                • Skills: Incident Management, KPIs, Corporate Security, Analytical Skills, Crisis Management, Technology Security\n
+              - Head of SOC (Nov 2020 – Jul 2023)\n
+                • Led Security Operations Center\n
+                • Managed tech stack and incident response\n
+                • Focus on KPIs and corporate security\n
+                • Skills: IT, Incident Management, Corporate Security, Analytical Skills, Crisis Management, Rust, Java, TypeScript, SQL, JavaScript, Technology Security\n
+              - Security Coordinator & Close Protection Officer (Sep 2018 – Nov 2020)\n
+                • Site manager in Somalia\n
+                • Close protection\n
+                • Risk management\n
+                • Skills: Incident Management, Corporate Security, Personnel Security, Security Operations, Security Consulting, Security Management\n
+              - Consultant (Jan 2007 – Sep 2010)\n
+                • Executive protection\n
+                • Counter surveillance\n
+                • Risk management\n
+              \n
+              Swedish Armed Forces:\n
+              - Hvgrpch stf (Home Guard Staff) (Nov 2017 – Sep 2020)\n
+              - Deputy Squad Leader, Int. Ranger Platoon (Aug 2006 – Jan 2008, AJB)\n
+              - Squad Leader, Para Rangers (Aug 2005 – Jul 2006, FJS/K3)\n
+              \n
+              Puori:\n
+              - Executive Distributor, Sweden, Finland & Norway (Jan 2011 – Dec 2018)\n
+                • Country Manager for Scandinavia\n
+                • Sales and KPI tracking\n
+                • Skills: Key Performance Indicators, Analytical Skills\n
+              \n
+              Soya Group Support AB:\n
+              - Security Operator (Oct 2010 – Aug 2017, Stockholm, Sweden)\n
+                • Executive protection\n
+                • Counter surveillance\n
+                • Duty officer\n
+                • Risk management\n
+                • Skills: Incident Management, Corporate Security\n
+              \n
+              CrossFit Nordic:\n
+              - Project Manager (Jan 2009 – Dec 2013)\n
+                • Organized Nordic Showdown (major CrossFit event)\n
+                • Managed annual CrossFit competitions\n
+                • Skills: Key Performance Indicators\n
+              - Founder and Co-Owner (Jul 2008 – Dec 2013)\n
+                • Founded CrossFit Nordic gym in Stockholm\n
+                • Co-led operations with Rickard Walén and Mads Jacobsen\n
+                • Skills: Key Performance Indicators\n
+              \n
+              education:\n
+              - Luleå University of Technology (2022)\n
+                • Degree: Teknologie kandidatexamen (tekn.kand.)\n
+                • Field: Systemvetenskap och -teori\n
+                • Skills: Analytical Skills, Technology Security\n
+              - Uppsala University (2020)\n
+                • Field: IT-säkerhet, GDPR, Programmering, IT\n
+                • Skills: Technology Security\n
+              - Karolinska Institutet (2008 - 2009)\n
+                • Field: Physiology\n
+              - Försvarshögskolan - Swedish Defence University (2008)\n
+                • Course: Leadership\n
+                • Details: Civil Military Leadership\n
+              - Scandinavian Risk Solutions (2009)\n
+                • Course: VU1\n
+                • Details: Väktare nivå 1\n
+              \n
+              interests: Security, AI, Technology, Health, Management\n
+              mottos:\n
+              - Skate to where the puck is going\n
+              - Who dares wins\n
+              `),
           },
         ],
       };
