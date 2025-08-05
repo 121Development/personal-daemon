@@ -145,6 +145,162 @@ Personal mottos are:
       };
     },
   },
+  {
+    name: "get_cv",
+    description: "Returns my CV in JSON format",
+    inputSchema: { type: "object", properties: {} },
+    execute: async (args: any) => {
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify({
+              "SRS Security": [
+                {
+                  "title": "Head of Protective Services",
+                  "duration": "Jul 2023 – Present",
+                  "location": "Stockholm, Sweden",
+                  "responsibilities": [
+                    "Head of operations and SOC",
+                    "Risk management and key account ownership",
+                    "Sales and business development",
+                    "Team leadership (65+ staff)"
+                  ],
+                  "skills": [
+                    "Incident Management",
+                    "Key Performance Indicators",
+                    "Corporate Security",
+                    "Analytical Skills",
+                    "Crisis Management",
+                    "Technology Security"
+                  ]
+                },
+                {
+                  "title": "Head of SOC",
+                  "duration": "Nov 2020 – Jul 2023",
+                  "responsibilities": [
+                    "Led Security Operations Center",
+                    "Managed tech stack and incident response",
+                    "Focus on KPIs and corporate security"
+                  ],
+                  "skills": [
+                    "IT",
+                    "Incident Management",
+                    "Corporate Security",
+                    "Analytical Skills",
+                    "Crisis Management",
+                    "Rust",
+                    "Java",
+                    "TypeScript",
+                    "SQL",
+                    "JavaScript",
+                    "Technology Security"
+                  ]
+                },
+                {
+                  "title": "Security Coordinator & Close Protection Officer",
+                  "duration": "Sep 2018 – Nov 2020",
+                  "responsibilities": [
+                    "Site manager in Somalia",
+                    "Close protection",
+                    "Risk management"
+                  ],
+                  "skills": [
+                    "Incident Management",
+                    "Corporate Security",
+                    "Personnel Security",
+                    "Security Operations",
+                    "Security Consulting",
+                    "Security Management"
+                  ]
+                },
+                {
+                  "title": "Consultant",
+                  "duration": "Jan 2007 – Sep 2010",
+                  "responsibilities": [
+                    "Executive protection",
+                    "Counter surveillance",
+                    "Risk management"
+                  ]
+                }
+              ],
+              "Swedish Armed Forces": [
+                {
+                  "title": "Hvgrpch stf (Home Guard Staff)",
+                  "duration": "Nov 2017 – Sep 2020"
+                },
+                {
+                  "title": "Deputy Squad Leader, Int. Ranger Platoon",
+                  "duration": "Aug 2006 – Jan 2008",
+                  "unit": "AJB"
+                },
+                {
+                  "title": "Squad Leader, Para Rangers",
+                  "duration": "Aug 2005 – Jul 2006",
+                  "unit": "FJS/K3"
+                }
+              ],
+              "Puori": [
+                {
+                  "title": "Executive Distributor, Sweden, Finland & Norway",
+                  "duration": "Jan 2011 – Dec 2018",
+                  "responsibilities": [
+                    "Country Manager for Scandinavia",
+                    "Sales and KPI tracking"
+                  ],
+                  "skills": [
+                    "Key Performance Indicators",
+                    "Analytical Skills"
+                  ]
+                }
+              ],
+              "Soya Group Support AB": [
+                {
+                  "title": "Security Operator",
+                  "duration": "Oct 2010 – Aug 2017",
+                  "location": "Stockholm, Sweden",
+                  "responsibilities": [
+                    "Executive protection",
+                    "Counter surveillance",
+                    "Duty officer",
+                    "Risk management"
+                  ],
+                  "skills": [
+                    "Incident Management",
+                    "Corporate Security"
+                  ]
+                }
+              ],
+              "CrossFit Nordic": [
+                {
+                  "title": "Project Manager",
+                  "duration": "Jan 2009 – Dec 2013",
+                  "responsibilities": [
+                    "Organized Nordic Showdown (major CrossFit event)",
+                    "Managed annual CrossFit competitions"
+                  ],
+                  "skills": [
+                    "Key Performance Indicators"
+                  ]
+                },
+                {
+                  "title": "Founder and Co-Owner",
+                  "duration": "Jul 2008 – Dec 2013",
+                  "responsibilities": [
+                    "Founded CrossFit Nordic gym in Stockholm",
+                    "Co-led operations with Rickard Walén and Mads Jacobsen"
+                  ],
+                  "skills": [
+                    "Key Performance Indicators"
+                  ]
+                }
+              ]
+            }, null, 2),
+          },
+        ],
+      };
+    },
+  },
 ];
 
 (async function main() {
