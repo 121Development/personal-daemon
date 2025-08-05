@@ -3,9 +3,9 @@ import express from 'express';
 import cors from 'cors';
 
 const serverInfo = {
-  name: "Erik Personal Daemon",
+  name: "Erik Personal MCP-Server",
   version: "1.0.0",
-  description: "A personal daemon for Erik with a few tools",
+  description: "A personal MCP-Server for Erik with a few tools",
   author: "Erik",
   capabilities: {
     tools: { listChanged: true },
