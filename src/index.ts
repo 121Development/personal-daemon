@@ -86,11 +86,6 @@ export async function startServer() {
   app.use(cors());
   app.use(express.json());
   
-  // Health check endpoint
-  app.get('/', (_req: Request, res: Response) => {
-    res.send(serverInfo);
-  });
-
   // MCP JSON-RPC endpoint
   app.post('/', async (req: Request, res: Response) => {
     try {
