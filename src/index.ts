@@ -8,8 +8,8 @@ const serverInfo = {
   description: "A personal MCP-Server for Erik with a few tools",
   author: "Erik",
   capabilities: {
-    tools: { listChanged: true },
-    resources: { listChanged: true },
+    tools: {},
+    resources: {},
   },
 };
 
