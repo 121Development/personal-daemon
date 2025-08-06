@@ -87,7 +87,7 @@ export async function startServer() {
   app.use(express.json());
   
   // Health check endpoint 
-  app.get('/', (_req: Request, res: Response) => {
+  app.get('/mcp', (_req: Request, res: Response) => {
     res.send(serverInfo);
   });
 
