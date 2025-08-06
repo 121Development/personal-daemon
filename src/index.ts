@@ -86,6 +86,11 @@ export async function startServer() {
   app.use(cors());
   app.use(express.json());
   
+  // Health check endpoint 
+  app.get('/', (_req: Request, res: Response) => {
+    res.send(serverInfo);
+  });
+
   // MCP JSON-RPC endpoint
   app.post('/', async (req: Request, res: Response) => {
     try {
@@ -103,7 +108,7 @@ export async function startServer() {
     }
   });
 
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 8080;
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
