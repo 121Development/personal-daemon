@@ -1,128 +1,30 @@
 import type { Request, Response } from 'express';
 import express from 'express';
 import cors from 'cors';
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import {
+  CallToolResult,
+} from "@modelcontextprotocol/sdk/types.js";
 
-const serverInfo = {
-  name: "Erik Personal MCP-Server",
-  version: "1.0.0",
-  description: "A personal MCP-Server for Erik with a few tools",
-  author: "Erik",
-  capabilities: {
-    tools: {},
-    resources: {},
-  },
-};
-
-async function handleMCPRequest(json: any): Promise<object> {
-  if (json.jsonrpc === "2.0") {
-    if (json.method === "initialize") {
-      return {
-        result: {
-          protocolVersion: "2025-03-26",
+const getServer = () => {
+  // Create an MCP server with implementation details
+  const server = new McpServer({
+          name: "Erik Personal MCP-Server",
+          version: "1.0.0",
+          description: "A personal MCP-Server for Erik with a few tools",
+          author: "Erik",
           capabilities: {
-            tools: { listChanged: true },
-            resources: { listChanged: true },
-          },
-          serverInfo,
-        },
-        jsonrpc: "2.0",
-        id: json.id,
-      };
-    }
-    if (json.method === "tools/list") {
-      return {
-        result: {
-          tools: tools.map((tool) => ({
-            name: tool.name,
-            description: tool.description,
-            inputSchema: tool.inputSchema,
-          })),
-        },
-        jsonrpc: "2.0",
-        id: json.id,
-      };
-    }
-    if (json.method === "tools/call") {
-      const tool = tools.find((tool) => tool.name === json.params.name);
-      if (tool) {
-        const toolResponse = await tool.execute(json.params.arguments);
-        return {
-          result: toolResponse,
-          jsonrpc: "2.0",
-          id: json.id,
-        };
-      } else {
-        return {
-          error: {
-            code: -32602,
-            message: `MCP error -32602: Tool ${json.params.name} not found`,
-          },
-          jsonrpc: "2.0",
-          id: json.id,
-        };
-      }
-    }
-    if (json.method === "ping") {
-      return {
-        result: {},
-        jsonrpc: "2.0",
-        id: json.id,
-      };
-    }
-  }
-  
-  return {
-    error: {
-      code: -32601,
-      message: "Method not found",
-    },
-    jsonrpc: "2.0",
-    id: json.id,
-  };
-}
+            tools: {},
+            resources: {},
+          }
+})
 
-export async function startServer() {
-  const app = express();
-  app.use(cors());
-  app.use(express.json());
-  
-  // Health check endpoint 
-  app.get('/mcp', (_req: Request, res: Response) => {
-    res.send(serverInfo);
-  });
-
-  // MCP JSON-RPC endpoint
-  app.post('/', async (req: Request, res: Response) => {
-    try {
-      const response = await handleMCPRequest(req.body);
-      res.json(response);
-    } catch (error) {
-      res.status(500).json({
-        error: {
-          code: -32603,
-          message: "Internal error",
-        },
-        jsonrpc: "2.0",
-        id: req.body?.id || null,
-      });
-    }
-  });
-
-  const port = process.env.PORT || 8080;
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-
-}
-
-
-const tools = [
-  {
-    name: "get_about",
-    description: "Basic information about me",
-    inputSchema: { type: "object", properties: {} },
-    execute: async (args: any) => {
-      return {
+  server.registerTool("get_about", {
+    title: "Get information about Erik",
+    description: "Returns basic information about Erik, including interests and skills.",
+  },
+  async (): Promise<CallToolResult> => ({
         content: [
           {
             type: "text",
@@ -142,15 +44,14 @@ Personal mottos are:
 - Who dares wins`),
           },
         ],
-      };
+
+}));
+
+  server.registerTool("get_cv", {
+      title: "get_cv",
+      description: "Returns my CV in JSON format",
     },
-  },
-  {
-    name: "get_cv",
-    description: "Returns my CV in JSON format",
-    inputSchema: { type: "object", properties: {} },
-    execute: async (args: any) => {
-      return {
+    async (): Promise<CallToolResult> => ({
         content: [
           {
             type: "text",
@@ -239,95 +140,152 @@ Personal mottos are:
               `),
           },
         ],
-      };
-    },
-  },
-  {
-    name: "get_workout",
+}));
+
+  server.registerTool("get_workout", {
+    title: "get_workout",
     description: "Returns a random kettlebell workout from a list of 5 workouts",
-    inputSchema: { type: "object", properties: {} },
-    execute: async (args: any) => {
-      const workouts = [
-        {
-          name: "Simple & Sinister",
-          description: "A classic kettlebell workout focusing on two main movements",
-          exercises: [
-            "Turkish Get-Up: 10 reps (5 each side)",
-            "Swing: 100 reps (50 each hand)",
-            "Rest 1-2 minutes between sets"
-          ],
-          duration: "20-30 minutes",
-          difficulty: "Beginner to Intermediate"
-        },
-        {
-          name: "The Giant",
-          description: "High-volume clean and press workout for strength and conditioning",
-          exercises: [
-            "Clean and Press: 10 sets of 5 reps",
-            "Rest 60-90 seconds between sets",
-            "Focus on perfect form and controlled breathing"
-          ],
-          duration: "25-35 minutes",
-          difficulty: "Intermediate to Advanced"
-        },
-        {
-          name: "Armor Building",
-          description: "Complex movement workout for total body strength",
-          exercises: [
-            "Double Clean: 2 reps",
-            "Double Press: 1 rep",
-            "Double Front Squat: 3 reps",
-            "Repeat for 5 rounds, then rest 2-3 minutes",
-            "Complete 3-5 total rounds"
-          ],
-          duration: "30-45 minutes",
-          difficulty: "Advanced"
-        },
-        {
-          name: "Quick & Dirty",
-          description: "Fast-paced circuit for conditioning and fat burning",
-          exercises: [
-            "Swings: 15 reps",
-            "Goblet Squats: 10 reps",
-            "Push-ups: 10 reps",
-            "Rest 30 seconds, repeat 5-8 rounds"
-          ],
-          duration: "15-20 minutes",
-          difficulty: "All Levels"
-        },
-        {
-          name: "Strength Endurance",
-          description: "Build strength and endurance with this comprehensive workout",
-          exercises: [
-            "Snatch: 5 reps each side",
-            "Turkish Get-Up: 3 reps each side",
-            "Goblet Squat: 10 reps",
-            "Rest 2 minutes, repeat 4-6 rounds"
-          ],
-          duration: "35-50 minutes",
-          difficulty: "Intermediate"
-        }
-      ];
-      
-      const randomWorkout = workouts[Math.floor(Math.random() * workouts.length)];
-      
-      return {
+    },
+    async (): Promise<CallToolResult> => ({
         content: [
           {
             type: "text",
             text: `🎯 **${randomWorkout.name}**\n\n📝 **Description**: ${randomWorkout.description}\n\n⏱️ **Duration**: ${randomWorkout.duration}\n💪 **Difficulty**: ${randomWorkout.difficulty}\n\n**Exercises**:\n${randomWorkout.exercises.map(exercise => `• ${exercise}`).join('\n')}\n\n🔥 **Get ready to work!**`
           },
-        ],
-      };
-    },
+        ], 
+}));
+
+const workouts = [
+  {
+    name: "Simple & Sinister",
+    description: "A classic kettlebell workout focusing on two main movements",
+    exercises: [
+      "Turkish Get-Up: 10 reps (5 each side)",
+      "Swing: 100 reps (50 each hand)",
+      "Rest 1-2 minutes between sets"
+    ],
+    duration: "20-30 minutes",
+    difficulty: "Beginner to Intermediate"
   },
+  {
+    name: "The Giant",
+    description: "High-volume clean and press workout for strength and conditioning",
+    exercises: [
+      "Clean and Press: 10 sets of 5 reps",
+      "Rest 60-90 seconds between sets",
+      "Focus on perfect form and controlled breathing"
+    ],
+    duration: "25-35 minutes",
+    difficulty: "Intermediate to Advanced"
+  },
+  {
+    name: "Armor Building",
+    description: "Complex movement workout for total body strength",
+    exercises: [
+      "Double Clean: 2 reps",
+      "Double Press: 1 rep",
+      "Double Front Squat: 3 reps",
+      "Repeat for 5 rounds, then rest 2-3 minutes",
+      "Complete 3-5 total rounds"
+    ],
+    duration: "30-45 minutes",
+    difficulty: "Advanced"
+  },
+  {
+    name: "Quick & Dirty",
+    description: "Fast-paced circuit for conditioning and fat burning",
+    exercises: [
+      "Swings: 15 reps",
+      "Goblet Squats: 10 reps",
+      "Push-ups: 10 reps",
+      "Rest 30 seconds, repeat 5-8 rounds"
+    ],
+    duration: "15-20 minutes",
+    difficulty: "All Levels"
+  },
+  {
+    name: "Strength Endurance",
+    description: "Build strength and endurance with this comprehensive workout",
+    exercises: [
+      "Snatch: 5 reps each side",
+      "Turkish Get-Up: 3 reps each side",
+      "Goblet Squat: 10 reps",
+      "Rest 2 minutes, repeat 4-6 rounds"
+    ],
+    duration: "35-50 minutes",
+    difficulty: "Intermediate"
+  }
 ];
 
-(async function main() {
-  try {
-    startServer();
+const randomWorkout = workouts[Math.floor(Math.random() * workouts.length)];
+
+  return server
+};
+
+  const app = express();
+  app.use(cors());
+  app.use(express.json());
+  
+app.post('/', async (req: Request, res: Response) => {
+
+try {
+    const server = getServer(); 
+    const transport: StreamableHTTPServerTransport = new StreamableHTTPServerTransport({
+      sessionIdGenerator: undefined,
+    });
+    res.on('close', () => {
+      console.log('Request closed');
+      transport.close();
+      server.close();
+    });
+    await server.connect(transport);
+    await transport.handleRequest(req, res, req.body);
   } catch (error) {
-    console.error(error);
+    console.error('Error handling MCP request:', error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        jsonrpc: '2.0',
+        error: {
+          code: -32603,
+          message: 'Internal server error',
+        },
+        id: null,
+      });
+    }
   }
-})();
+});
+
+// SSE notifications not supported in stateless mode
+app.get('/', async (req: Request, res: Response) => {
+  console.log('Received GET MCP request');
+  res.writeHead(405).end(JSON.stringify({
+    jsonrpc: "2.0",
+    error: {
+      code: -32000,
+      message: "Method not allowed."
+    },
+    id: null
+  }));
+});
+
+// Session termination not needed in stateless mode
+app.delete('/', async (req: Request, res: Response) => {
+  console.log('Received DELETE MCP request');
+  res.writeHead(405).end(JSON.stringify({
+    jsonrpc: "2.0",
+    error: {
+      code: -32000,
+      message: "Method not allowed."
+    },
+    id: null
+  }));
+});
+
+
+// Start the server
+const PORT = 3000;
+getServer();
+app.listen(PORT, () => {
+  console.log(`MCP Stateless Streamable HTTP Server listening on port ${PORT}`);
+});
     
