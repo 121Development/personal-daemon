@@ -255,16 +255,37 @@ try {
   }
 });
 
-// SSE notifications not supported in stateless mode
+// Handle both MCP JSON-RPC requests and regular HTTP requests
 app.get('/', async (req: Request, res: Response) => {
-  console.log('Received GET MCP request');
-  res.writeHead(405).end(JSON.stringify({
-    name: "Erik Personal MCP-Server",
-    version: "1.0.0",
-    description: "A personal MCP-Server for Erik with a few tools",
-    author: "Erik",
-    capabilities: { tools: {}, resources: {} }
-  }));
+  console.log('Received GET request');
+  
+  // Check if this is an MCP JSON-RPC request (would have jsonrpc in query or headers)
+  if (req.query.jsonrpc || req.headers['content-type']?.includes('application/json-rpc')) {
+    res.writeHead(405).end(JSON.stringify({
+      jsonrpc: "2.0",
+      error: {
+        code: -32000,
+        message: "Method not allowed."
+      },
+      id: null
+    }));
+  } else {
+    // Regular HTTP request - return server info with 200 status for health checks
+    res.json({
+      name: "Erik Personal MCP-Server",
+      version: "1.0.0",
+      description: "A personal MCP-Server for Erik with a few tools",
+      author: "Erik",
+      capabilities: {
+        tools: {
+          get_about: {},
+          get_cv: {},
+          get_workout: {}
+        },
+        resources: {}
+      }
+    });
+  }
 });
 
 // Session termination not needed in stateless mode
