@@ -272,9 +272,9 @@ app.get('/', async (req: Request, res: Response) => {
   } else {
     // Regular HTTP request - return server info with 200 status for health checks
     res.json({
-      name: "Erik Personal MCP-Server",
+      name: "Erik Personal MCP-Server/daemon",
       version: "1.0.0",
-      description: "A personal MCP-Server for Erik with a few tools",
+      description: "Connect with an MCP-client to use tools, or use www.agentinspect.ai",
       author: "Erik",
       capabilities: {
         tools: {
