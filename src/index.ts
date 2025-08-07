@@ -1,5 +1,5 @@
-import type { Request, Response } from 'express';
-import express from 'express';
+import type { Request, Response } from "express";
+import express from "express";
 import cors from 'cors';
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
@@ -259,12 +259,11 @@ try {
 app.get('/', async (req: Request, res: Response) => {
   console.log('Received GET MCP request');
   res.writeHead(405).end(JSON.stringify({
-    jsonrpc: "2.0",
-    error: {
-      code: -32000,
-      message: "Method not allowed."
-    },
-    id: null
+    name: "Erik Personal MCP-Server",
+    version: "1.0.0",
+    description: "A personal MCP-Server for Erik with a few tools",
+    author: "Erik",
+    capabilities: { tools: {}, resources: {} }
   }));
 });
 
