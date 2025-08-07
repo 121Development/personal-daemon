@@ -303,7 +303,7 @@ app.delete('/', async (req: Request, res: Response) => {
 
 
 // Start the server
-const PORT = 3000;
+const PORT = 8080;
 getServer();
 app.listen(PORT, () => {
   console.log(`MCP Stateless Streamable HTTP Server listening on port ${PORT}`);
