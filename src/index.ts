@@ -144,7 +144,7 @@ Personal mottos are:
 
   server.registerTool("get_workout", {
     title: "get_workout",
-    description: "Returns a random kettlebell workout from a list of 5 workouts",
+    description: "Returns a random kettlebell workout from a list of 5 workouts. Get after it!",
     },
     async (): Promise<CallToolResult> => ({
         content: [
@@ -218,7 +218,7 @@ const workouts = [
     exercises: [
       "Double KB Clean: 20 reps, 2 KBs 24kg men, 16kg women",
       "Alteranting Push Press: 20 reps, 2 KBs 24kg men, 16kg women",
-      "Rest 3-4 minutes between rounds, 5 rounds for a total of 100 reps each exercise. You cant put the KBs down between cleans and pushpress. "
+      "Rest 3-4 minutes between rounds, 5 rounds for a total of 100 reps each exercise. You cant put the KBs down between cleans and pushpress."
     ],
     duration: "35-50 minutes",
     difficulty: "Intermediate"
@@ -282,7 +282,7 @@ app.get('/', async (req: Request, res: Response) => {
     res.json({
       name: "Erik Personal MCP-Server/daemon",
       version: "1.0.0",
-      description: "Connect with an MCP-client to use tools, or use www.agentinspect.ai",
+      description: "Connect with an MCP-client to use tools",
       author: "Erik",
       capabilities: {
         tools: {
