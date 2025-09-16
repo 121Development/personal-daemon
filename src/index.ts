@@ -157,39 +157,36 @@ Personal mottos are:
 
 const workouts = [
   {
-    name: "Simple & Sinister",
-    description: "A classic kettlebell workout focusing on two main movements",
+    name: "400 Bulk",
+    description: "A workout with all the parts; squat, hinge, press, pull. Do all 100 reps before moving on to the next movement",
     exercises: [
-      "Turkish Get-Up: 10 reps (5 each side)",
-      "Swing: 100 reps (50 each hand)",
-      "Rest 1-2 minutes between sets"
+      "Kettlebell Swing: 100 reps",
+      "Gorilla Row: 100 reps, use 2 KBs",
+      "Goblet Squat: 100 reps",
+      "Floor press: 100 reps, use 2 KBs",
     ],
     duration: "20-30 minutes",
     difficulty: "Beginner to Intermediate"
   },
   {
-    name: "The Giant",
-    description: "High-volume clean and press workout for strength and conditioning",
+    name: "Secret Service Snatch Test",
+    description: "As many snatches as possible in 10 minutes",
     exercises: [
-      "Clean and Press: 10 sets of 5 reps",
-      "Rest 60-90 seconds between sets",
-      "Focus on perfect form and controlled breathing"
+      "Snatch with 1 KB 24kg men, 16kg women"
     ],
-    duration: "25-35 minutes",
+    duration: "10 minutes",
     difficulty: "Intermediate to Advanced"
   },
   {
-    name: "Armor Building",
-    description: "Complex movement workout for total body strength",
+    name: "Starting strength",
+    description: "Easy movements for 5 sets. Fun to do in team of 2, one person does 1 round while the other rest. 5 rounds each.",
     exercises: [
-      "Double Clean: 2 reps",
-      "Double Press: 1 rep",
-      "Double Front Squat: 3 reps",
-      "Repeat for 5 rounds, then rest 2-3 minutes",
-      "Complete 3-5 total rounds"
+      "Kettlebell Swing: 10 reps",
+      "Goblet squat: 10 reps",
+      "Gorilla Row: 20 reps, 2 kettlebells",
     ],
-    duration: "30-45 minutes",
-    difficulty: "Advanced"
+    duration: "10-15 minutes",
+    difficulty: "Beginner"
   },
   {
     name: "Quick & Dirty",
@@ -208,9 +205,20 @@ const workouts = [
     description: "Build strength and endurance with this comprehensive workout",
     exercises: [
       "Snatch: 5 reps each side",
-      "Turkish Get-Up: 3 reps each side",
+      "Burpee: 10 reps",
       "Goblet Squat: 10 reps",
       "Rest 2 minutes, repeat 4-6 rounds"
+    ],
+    duration: "35-50 minutes",
+    difficulty: "Intermediate"
+  },
+  {
+    name: "Hinge & Press",
+    description: "Strenght endurance workout with cleans and pushpress.",
+    exercises: [
+      "Double KB Clean: 20 reps, 2 KBs 24kg men, 16kg women",
+      "Alteranting Push Press: 20 reps, 2 KBs 24kg men, 16kg women",
+      "Rest 3-4 minutes between rounds, 5 rounds for a total of 100 reps each exercise. You cant put the KBs down between cleans and pushpress. "
     ],
     duration: "35-50 minutes",
     difficulty: "Intermediate"
@@ -281,8 +289,7 @@ app.get('/', async (req: Request, res: Response) => {
           get_about: {},
           get_cv: {},
           get_workout: {}
-        },
-        resources: {}
+        }
       }
     });
   }
