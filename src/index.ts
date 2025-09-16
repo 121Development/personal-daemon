@@ -217,7 +217,7 @@ const workouts = [
     description: "Strenght endurance workout with cleans and pushpress.",
     exercises: [
       "Double KB Clean: 20 reps, 2 KBs 24kg men, 16kg women",
-      "Alteranting Push Press: 20 reps, 2 KBs 24kg men, 16kg women",
+      "Alternating Push Press: 20 reps, 2 KBs 24kg men, 16kg women",
       "Rest 3-4 minutes between rounds, 5 rounds for a total of 100 reps each exercise. You cant put the KBs down between cleans and pushpress."
     ],
     duration: "35-50 minutes",
